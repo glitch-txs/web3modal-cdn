@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  Testing Web3Modal
+  
+</body>
+<script type="module">
+  import * as CDNW3M from "https://cdn.jsdelivr.net/npm/cdn-wagmi@2.0.0/dist/cdn-wagmi.js"
+
+  const { Wagmi, Chains, Web3modal, Connectors } = CDNW3M
+
+  const { createWeb3Modal, defaultWagmiConfig } = Web3modal
+  const { mainnet, sepolia } = Chains
+  const { coinbaseWallet, walletConnect, injected } = Connectors
+  const { createConfig, http } = Wagmi
+
+  const projectId = 'bd4997ce3ede37c95770ba10a3804dad'
+
+const metadata = {
+  name: 'Web3Modal',
+  description: 'Web3Modal Example',
+  url: 'https://web3modal.com', // url must match your domain & subdomain
+  icons: ['https://avatars.githubusercontent.com/u/37784886']
+}
+
+const config = createConfig({
+  chains: [mainnet, sepolia],
+  transports: {
+    [mainnet.id]: http(),
+    [sepolia.id]: http()
+  },
+  connectors: [
+    walletConnect({ projectId, metadata, showQrModal: false }),
+    injected({ shimDisconnect: true }),
+    coinbaseWallet({
+      appName: metadata.name,
+      appLogoUrl: metadata.icons[0]
+    })
+  ]
+})
+const modal = createWeb3Modal({
+  wagmiConfig: config,
+  projectId,
+  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableOnramp: true // Optional - false as default
+})
+
+modal.open()
+console.log(modal)
+</script>
+
+</html>

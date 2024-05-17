@@ -1,0 +1,32 @@
+{
+  "name": "cdn-wagmi",
+  "version": "2.0.0",
+  "main": "dist/cdn-wagmi.umd.cjs",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && vite build",
+    "watch": "npx tsc --watch",
+    "upload": "npm run build && npm publish --public"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite-plugin-node-polyfills": "^0.21.0"
+  },
+  "peerDependencies": {
+    "typescript": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@web3modal/wagmi": "^4.2.1",
+    "viem": "^2.10.9",
+    "vite": "^5.2.11",
+    "wagmi": "^2.9.2"
+  }
+}
