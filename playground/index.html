@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" src="https://cdn.jsdelivr.net/npm/cdn-wagmi@3.0.0/dist/cdn-wagmi.js"></script>
   <title>Document</title>
 </head>
 <body>
   Testing Web3Modal
-  
+  <w3m-button></w3m-button>
 </body>
 <script type="module">
-  import * as CDNW3M from "https://cdn.jsdelivr.net/npm/cdn-wagmi@2.0.0/dist/cdn-wagmi.js"
+  import * as CDNW3M from "https://cdn.jsdelivr.net/npm/cdn-wagmi@3.0.0/dist/cdn-wagmi.js"
 
-  const { Wagmi, Chains, Web3modal, Connectors } = CDNW3M
+  const { WagmiCore, Chains, Web3modal, Connectors } = CDNW3M
 
   const { createWeb3Modal, defaultWagmiConfig } = Web3modal
   const { mainnet, sepolia } = Chains
   const { coinbaseWallet, walletConnect, injected } = Connectors
-  const { createConfig, http } = Wagmi
+  const { createConfig, http, reconnect } = WagmiCore
 
   const projectId = 'bd4997ce3ede37c95770ba10a3804dad'
 
@@ -43,16 +44,14 @@ const config = createConfig({
     })
   ]
 })
+reconnect(config)
+
 const modal = createWeb3Modal({
   wagmiConfig: config,
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   enableOnramp: true // Optional - false as default
 })
-
-modal.open()
-console.log(modal)
-modal.s
 </script>
 
 </html>
