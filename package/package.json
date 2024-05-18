@@ -1,6 +1,6 @@
 {
   "name": "cdn-wagmi",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "main": "dist/cdn-wagmi.umd.cjs",
   "type": "module",
   "files": [
@@ -24,9 +24,10 @@
     }
   },
   "dependencies": {
+    "@wagmi/connectors": "^5.0.2",
+    "@wagmi/core": "^2.10.2",
     "@web3modal/wagmi": "^4.2.1",
     "viem": "^2.10.9",
-    "vite": "^5.2.11",
-    "wagmi": "^2.9.2"
+    "vite": "^5.2.11"
   }
 }
